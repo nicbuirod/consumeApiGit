@@ -24,11 +24,7 @@ const Search = () => {
   const handleGetAll = async () => {
     try {
       await axios
-        .get("https://api.github.com/users?per_page=10", {
-          headers: {
-            Authorization: `Bearer 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`,
-          },
-        })
+        .get("https://api.github.com/users?per_page=10")
         .then((response) => {
           setUsers(response.data);
         });
@@ -63,11 +59,7 @@ const Search = () => {
       try {
         const followersData = await Promise.all(
           users.map(async (e) => {
-            const response = await axios.get(e.followers_url, {
-              headers: {
-                Authorization: `Bearer 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`,
-              },
-            });
+            const response = await axios.get(e.followers_url);
 
             return {
               name: e.login,
